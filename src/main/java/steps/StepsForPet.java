@@ -1,6 +1,7 @@
 package steps;
 
 import dto.models.PetModel;
+import io.qameta.allure.Step;
 import io.restassured.specification.RequestSpecification;
 import utils.ResponseWrapper;
 
@@ -61,6 +62,7 @@ public class StepsForPet {
      * @param request - тело запроса.
      * @return - оболочка для работы с ответом.
      */
+    @Step("Выполнение запроса POST /pet")
     public ResponseWrapper createNewPetToTheStore (PetModel request) {
         return new ResponseWrapper(
                 given(requestSpecification)
@@ -76,6 +78,7 @@ public class StepsForPet {
      * @param request - тело запроса.
      * @return - оболочка для работы с ответом.
      */
+    @Step("Изменение параметров у существующего питомца.")
     public ResponseWrapper putAnExistingPet(PetModel request) {
         return new ResponseWrapper(
                 given(requestSpecification)
@@ -91,6 +94,7 @@ public class StepsForPet {
      * @param status - статус.
      * @return - оболочка для работы с ответом.
      */
+    @Step("Поиск питомца по статусу.")
     public ResponseWrapper getPetByStatus (String status) {
         return new ResponseWrapper(
                 given(requestSpecification)
@@ -106,6 +110,7 @@ public class StepsForPet {
      * @param id - id.
      * @return - оболочка для работы с ответом.
      */
+    @Step("Поиск питомца по id.")
     public ResponseWrapper getPetById (String id) {
         return new ResponseWrapper(
                 given(requestSpecification)
@@ -121,6 +126,7 @@ public class StepsForPet {
      * @param id - id.
      * @return - оболочка для работы с ответом.
      */
+    @Step("Удаление питомца из магазина.")
     public ResponseWrapper deletePetById (String id) {
         return new ResponseWrapper(
                 given(requestSpecification)

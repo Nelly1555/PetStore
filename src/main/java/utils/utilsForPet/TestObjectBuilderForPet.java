@@ -1,6 +1,8 @@
 package utils.utilsForPet;
 
 import dto.models.PetModel;
+import io.qameta.allure.Step;
+
 import java.util.List;
 
 import static utils.utilsForPet.TestDataHelperForPet.*;
@@ -16,7 +18,7 @@ public class TestObjectBuilderForPet {
      * @param VALID_PET_ID- идентификатор питомца.
      * @return - тело запроса.
      */
-
+    @Step("Создание тела запроса для добавления питомца.")
     public static PetModel getAddNewPetModel (String VALID_PET_ID) {
         return PetModel.builder()
                 .id(VALID_PET_ID)
@@ -41,7 +43,7 @@ public class TestObjectBuilderForPet {
      * @param VALID_PET_ID- идентификатор питомца.
      * @return - тело запроса.
      */
-
+    @Step("Создание тела запроса для изменения параметров питомца.")
     public static PetModel getPutUpdatedPetModel (String VALID_PET_ID) {
         return PetModel.builder()
                 .id(VALID_PET_ID)

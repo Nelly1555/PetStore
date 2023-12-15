@@ -25,13 +25,9 @@ public class FindPetById extends BaseTestForPet {
 
     @BeforeEach
     public void initEach() {
-        step("Создание тела запроса для добавления питомца с валидным ID", () -> {
-            request = getAddNewPetModel(VALID_PET_ID);
-        });
 
-        step("Выполнение запроса POST /pet", () -> {
-            responseWrapper = steps.createNewPetToTheStore(request);
-        });
+        request = getAddNewPetModel(VALID_PET_ID);
+        responseWrapper = steps.createNewPetToTheStore(request);
     }
 
     @Test
@@ -39,31 +35,27 @@ public class FindPetById extends BaseTestForPet {
     @Story("Поиск питомца по ID. Позитивный сценарий.")
     public void findPetsByIdPositiveTest() {
 
-        step("Создание тела запроса для поиска питомца по ID", () -> {
-            responseWrapper = steps.getPetById(VALID_PET_ID);
-        });
+        responseWrapper = steps.getPetById(VALID_PET_ID);
 
-        step("Проверка результата", () -> {
-            int statusCode = responseWrapper.getStatusCode();
-            PetModel response = responseWrapper.as(PetModel.class);
-            String valuePetId = responseWrapper.getFieldValue(ID_FIELD);
+        int statusCode = responseWrapper.getStatusCode();
+        PetModel response = responseWrapper.as(PetModel.class);
+        String valuePetId = responseWrapper.getFieldValue(ID_FIELD);
 
-            assertSoftly(
-                    softAssertions -> {
-                        softAssertions
-                                .assertThat(statusCode)
-                                .withFailMessage("Status code does not match")
-                                .isEqualTo(STATUS_CODE_OK);
-                        softAssertions
-                                .assertThat(response)
-                                .withFailMessage("Response body does not match")
-                                .isEqualTo(request);
-                        softAssertions
-                                .assertThat(valuePetId)
-                                .withFailMessage("ID does not match")
-                                .isEqualTo(VALID_PET_ID);
+        assertSoftly(
+                softAssertions -> {
+                    softAssertions
+                            .assertThat(statusCode)
+                            .withFailMessage("Status code does not match")
+                            .isEqualTo(STATUS_CODE_OK);
+                    softAssertions
+                            .assertThat(response)
+                            .withFailMessage("Response body does not match")
+                            .isEqualTo(request);
+                    softAssertions
+                            .assertThat(valuePetId)
+                            .withFailMessage("ID does not match")
+                            .isEqualTo(VALID_PET_ID);
                     }
-            );
-        });
+        );
     }
 }

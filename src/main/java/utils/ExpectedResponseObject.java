@@ -1,6 +1,7 @@
 package utils;
 
 import dto.response.ExpectedResponse;
+import io.qameta.allure.Step;
 
 /**
  * Вспомогательный класс для формирования ожидаемого результата при успешном удалении объекта из магазина.
@@ -52,6 +53,7 @@ public class ExpectedResponseObject {
      *
      * @return - тело ошибки.
      */
+    @Step(" Получение ожидаемого результата при успешном удалении объекта из магазина.")
     public static ExpectedResponse getSuccessfulDeleteResponse(String id) {
         return ExpectedResponse.builder()
                 .code(CODE_200)
@@ -65,6 +67,7 @@ public class ExpectedResponseObject {
      *
      * @return - тело ошибки.
      */
+    @Step("Получение ожидаемого результата ошибки при удалении несуществующего объекта.")
     public static ExpectedResponse getErrorAfterDeleteResponse(String message) {
         return ExpectedResponse.builder()
                 .code(ERROR_CODE_1)
@@ -78,6 +81,7 @@ public class ExpectedResponseObject {
      *
      * @return - тело ошибки.
      */
+    @Step("Получение ожидаемого результата ошибки при вводе неправильного ID.")
     public static ExpectedResponse getInputWrongIdResponse() {
         return ExpectedResponse.builder()
                 .code(ERROR_CODE_500)
